@@ -40,6 +40,7 @@ def test_get_id_from_path():
     for path in paths:
         assert uniq_id == IAPRTC12DatasetPrep.get_id_from_path(path)
 
+
 def test_urls():
     """Test that the data urls are up."""
     urls = (
