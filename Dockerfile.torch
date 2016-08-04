@@ -47,8 +47,8 @@ RUN wget https://github.com/hughperkins/FindCUDA/archive/v3.5-1.tar.gz -q -O Fin
 # Install additional DenseCap dependencies
 RUN luarocks install torch
 ENV CUDA_BIN_PATH=/usr/local/cuda-7.5
-RUN luarocks install cutorch
-RUN luarocks install cunn
+RUN luarocks install cutorch 1.0-0
+RUN luarocks install cunn 1.0-0
 RUN luarocks install cudnn
 RUN luarocks install nn
 RUN luarocks install image
