@@ -48,6 +48,8 @@ RUN wget https://github.com/hughperkins/FindCUDA/archive/v3.5-1.tar.gz -q -O Fin
 RUN luarocks install torch
 ENV CUDA_BIN_PATH=/usr/local/cuda-7.5
 RUN luarocks install cutorch
+RUN luarocks install cunn
+RUN luarocks install cudnn
 RUN luarocks install nn
 RUN luarocks install image
 RUN luarocks install lua-cjson
@@ -55,20 +57,6 @@ RUN luarocks install https://raw.githubusercontent.com/soumith/cudnn.torch/R4/cu
 RUN luarocks install https://raw.githubusercontent.com/qassemoquab/stnbhwd/master/stnbhwd-scm-1.rockspec
 RUN luarocks install https://raw.githubusercontent.com/jcjohnson/torch-rnn/master/torch-rnn-scm-1.rockspec
 RUN luarocks install loadcaffe
-
-# Install cuDNN
-RUN echo "deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1404/x86_64 /" > /etc/apt/sources.list.d/nvidia-ml.list
-ENV CUDNN_VERSION 5
-LABEL com.nvidia.cudnn.version="5"
-RUN apt-get update && apt-get install -y --no-install-recommends --force-yes \
-        libcudnn5 \
-        libcudnn5-dev && \
-    rm -rf /var/lib/apt/lists/*
-
-# GPU acceleratation
-RUN luarocks install cutorch
-RUN luarocks install cunn
-RUN luarocks install cudnn
 
 # Set ~/torch as working directory
 WORKDIR /root/torch
